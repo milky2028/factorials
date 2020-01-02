@@ -16,16 +16,17 @@ function copyToMemory(memory, data) {
   }
 }
 
-const MEMORY_START_POSITION = 0x124;
+const MEMORY_START_POSITION = 1024;
 
 (async () => {
   const wasmCode = readFileSync('factorials.wasm');
   const { instance } = await WebAssembly.instantiate(wasmCode);
-  const data = [1000, 34, 56, 79];
-  const view = new Uint32Array(instance.exports.memory.buffer, MEMORY_START_POSITION, data.length);
+  const data = [65, 75];
+  const view = new Float64Array(instance.exports.memory.buffer, MEMORY_START_POSITION, data.length);
   console.log(view);
   copyToMemory(view, data);
   console.log(view);
-  instance.exports.addTwo(MEMORY_START_POSITION, data.length);
-  console.log(view);
+  const sum = instance.exports.sumArray(MEMORY_START_POSITION, data.length)
+  console.log(sum);
+  console.log(Boolean(instance.exports.isPrime(sum)));
 })();

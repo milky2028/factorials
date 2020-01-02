@@ -1,5 +1,5 @@
 #include <emscripten.h>
-// #include <stdbool.h>
+#include <stdbool.h>
 #include <stdint.h>
 // #include <stdio.h>
 #include <stdlib.h>
@@ -8,24 +8,21 @@
 // EMSCRIPTEN_KEEPALIVE
 // char const* const boolToString(bool b) { return b ? "true" : "false"; }
 
-// EMSCRIPTEN_KEEPALIVE
-// bool isPrime(size_t n) {
-//   for (size_t i = 2; i < n; i++) {
-//     if (n % i == 0) {
-//       return boolToString(false);
-//     }
-//   }
+EMSCRIPTEN_KEEPALIVE
+bool isPrime(size_t n) {
+  for (size_t i = 2; i < n; i++) {
+    if (n % i == 0) {
+      return false;
+    }
+  }
 
-//   return boolToString(true);
-// }
+  return true;
+}
 
 // typedef struct stringData {
 //   char const* const txt;
 //   size_t len;
 // } stringData;
-
-// const uint32_t MEMORY_LENGTH = 256;
-// uint32_t memory[MEMORY_LENGTH];
 
 // EMSCRIPTEN_KEEPALIVE
 // char* heyThere() { return "Tyler"; }
@@ -33,16 +30,16 @@
 // EMSCRIPTEN_KEEPALIVE
 // int stringLength(char* string) { return strlen(string); }
 
-// EMSCRIPTEN_KEEPALIVE
-// uint32_t* read_memory() { return &memory[0]; }
-
 EMSCRIPTEN_KEEPALIVE
-void addTwo(uint32_t memoryStartPosition, size_t arrayLength) {
-  uint32_t* memory = (uint32_t*)memoryStartPosition;
+double sumArray(size_t memoryStartPosition, size_t arrayLength) {
+  double* memory = (double*)memoryStartPosition;
 
+  double total = 0;
   for (size_t i = 0; i < arrayLength; i++) {
-    memory[i] = memory[i] + 2;
+    total += memory[i];
   }
+
+  return total;
 }
 
 // EMSCRIPTEN_KEEPALIVE
@@ -54,11 +51,6 @@ void addTwo(uint32_t memoryStartPosition, size_t arrayLength) {
 //   }
 
 //   return primes;
-// }
-
-// int main() {
-//   printf("%d\n", heyThere()[1]);
-//   return EXIT_SUCCESS;
 // }
 
 // void findPrimeFactorials(size_t n, size_t primes[n], size_t factorials[n]) {
