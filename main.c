@@ -1,12 +1,12 @@
+#include <assert.h>
 #include <emscripten.h>
 #include <stdbool.h>
 #include <stdint.h>
-// #include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-// EMSCRIPTEN_KEEPALIVE
-// char const* const boolToString(bool b) { return b ? "true" : "false"; }
+char const* const boolToString(bool b) { return b ? "true" : "false"; }
 
 EMSCRIPTEN_KEEPALIVE
 bool isPrime(size_t n) {
@@ -85,3 +85,17 @@ void findPrimes(size_t n, size_t primes[n]) {
 
 //   return EXIT_SUCCESS;
 // }
+
+int main(size_t argc, char* argv[argc + 1]) {
+  if (!strcmp(argv[1], "test")) {
+    assert(isPrime(1));
+    assert(isPrime(5));
+    assert(isPrime(7));
+    assert(!isPrime(9));
+    assert(!isPrime(12));
+    assert(!isPrime(42));
+    printf("%s\n", "Tests passed");
+  } else {
+    printf("%s\n", "Run");
+  }
+}
