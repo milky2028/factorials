@@ -1,9 +1,20 @@
+use std::env::args;
+
 fn is_prime(number_to_test: u64) -> bool {
   !(2..number_to_test).any(|i| number_to_test % i == 0)
 }
 
 fn main() {
-  println!("{}", is_prime(13));
+  let max: u64 = args()
+    .nth(1)
+    .expect("No arguments found.")
+    .parse()
+    .expect("Could not parse input into a number. Please provide a vaid number.");
+  let prime_numbers = (1..max).filter(|&i| is_prime(i));
+
+  for i in prime_numbers {
+    println!("{}", i);
+  }
 }
 
 mod tests {
