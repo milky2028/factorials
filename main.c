@@ -86,7 +86,7 @@ void findPrimes(size_t n, size_t primes[n]) {
 //   return EXIT_SUCCESS;
 // }
 
-int main(size_t argc, char* argv[argc + 1]) {
+int main(int argc, char* argv[argc + 1]) {
   if (!strcmp(argv[1], "test")) {
     assert(isPrime(1));
     assert(isPrime(5));
