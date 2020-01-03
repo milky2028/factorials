@@ -72,7 +72,7 @@ void findPrimes(size_t n, size_t primes[n]) {
 // }
 
 // int main(size_t argc, char* argv[argc + 1]) {
-//   size_t n = (size_t)strtod(argv[1], 0);
+//   size_t n = (size_t)atoi(argv[1]);
 
 //   size_t primeNumbers[n];
 //   findPrimes(n, primeNumbers);
