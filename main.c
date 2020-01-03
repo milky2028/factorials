@@ -42,6 +42,18 @@ double sumArray(size_t memoryStartPosition, size_t arrayLength) {
   return total;
 }
 
+EMSCRIPTEN_KEEPALIVE
+double* addTwoNonMutating(size_t memoryStartPosition, size_t arrayLength) {
+  double* memory = (double*)memoryStartPosition;
+  double* output = (double*)(memoryStartPosition + arrayLength * 8);
+
+  for (size_t i = 0; i < arrayLength; i++) {
+    output[i] += memory[i] + 2;
+  }
+
+  return output;
+}
+
 // EMSCRIPTEN_KEEPALIVE
 // size_t* findPrimes(size_t n, size_t primes[n]) {
 //   primes[0] = 0;

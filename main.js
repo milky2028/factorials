@@ -20,13 +20,29 @@ const MEMORY_START_POSITION = 1024;
 
 (async () => {
   const wasmCode = readFileSync('factorials.wasm');
-  const { instance } = await WebAssembly.instantiate(wasmCode);
+  const {
+    instance: {
+      exports: {
+        addTwoNonMutating,
+        sumArray,
+        isPrime,
+        memory: { buffer }
+      }
+    }
+  } = await WebAssembly.instantiate(wasmCode);
   const data = [65, 75];
-  const view = new Float64Array(instance.exports.memory.buffer, MEMORY_START_POSITION, data.length);
+  const view = new Float64Array(buffer, MEMORY_START_POSITION, data.length);
   console.log(view);
   copyToMemory(view, data);
   console.log(view);
-  const sum = instance.exports.sumArray(MEMORY_START_POSITION, data.length)
+  const sum = sumArray(MEMORY_START_POSITION, data.length);
   console.log(sum);
-  console.log(Boolean(instance.exports.isPrime(sum)));
+  console.log(Boolean(isPrime(sum)));
+  addTwoNonMutating(MEMORY_START_POSITION, data.length);
+  const resView = new Float64Array(
+    buffer,
+    MEMORY_START_POSITION + data.length * 8,
+    data.length
+  );
+  console.log(resView);
 })();
