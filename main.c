@@ -10,7 +10,7 @@
 
 EMSCRIPTEN_KEEPALIVE
 bool isPrime(size_t n) {
-  for (size_t i = 2; i < n; i++) {
+  for (size_t i = 2; i < n; ++i) {
     if (n % i == 0) {
       return false;
     }
@@ -35,7 +35,7 @@ double sumArray(size_t memoryStartPosition, size_t arrayLength) {
   double* memory = (double*)memoryStartPosition;
 
   double total = 0;
-  for (size_t i = 0; i < arrayLength; i++) {
+  for (size_t i = 0; i < arrayLength; ++i) {
     total += memory[i];
   }
 
@@ -47,23 +47,21 @@ double* addTwoNonMutating(size_t memoryStartPosition, size_t arrayLength) {
   double* memory = (double*)memoryStartPosition;
   double* output = (double*)(memoryStartPosition + arrayLength * 8);
 
-  for (size_t i = 0; i < arrayLength; i++) {
+  for (size_t i = 0; i < arrayLength; ++i) {
     output[i] += memory[i] + 2;
   }
 
   return output;
 }
 
-// EMSCRIPTEN_KEEPALIVE
-// size_t* findPrimes(size_t n, size_t primes[n]) {
-//   primes[0] = 0;
-//   primes[1] = 1;
-//   for (size_t i = 2; i <= n; i++) {
-//     primes[i] = isPrime(i) ? i : 0;
-//   }
-
-//   return primes;
-// }
+EMSCRIPTEN_KEEPALIVE
+void findPrimes(size_t n, size_t primes[n]) {
+  primes[0] = 0;
+  primes[1] = 1;
+  for (size_t i = 2; i <= n; ++i) {
+    primes[i] = isPrime(i) ? i : 0;
+  }
+}
 
 // void findPrimeFactorials(size_t n, size_t primes[n], size_t factorials[n]) {
 //   for (size_t i = 0; i <= n; i++) {
@@ -73,13 +71,17 @@ double* addTwoNonMutating(size_t memoryStartPosition, size_t arrayLength) {
 //   }
 // }
 
-// size_t main(size_t argc, char* argv[argc + 1]) {
-//   size_t n = (size_t)atoi(argv[1]) + 1;
+// int main(size_t argc, char* argv[argc + 1]) {
+//   size_t n = (size_t)strtod(argv[1], 0);
+
 //   size_t primeNumbers[n];
 //   findPrimes(n, primeNumbers);
 
-//   size_t factorials[n];
-//   findPrimeFactorials(n, primeNumbers, factorials);
+//   for (size_t i = 0; i <= n; ++i) {
+//     if (primeNumbers[i]) {
+//       printf("%lu\n", primeNumbers[i]);
+//     }
+//   }
 
-//   return 0;
+//   return EXIT_SUCCESS;
 // }
