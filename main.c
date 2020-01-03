@@ -99,4 +99,6 @@ int main(int argc, char* argv[argc + 1]) {
   } else {
     printf("%s\n", "Run");
   }
+
+  return EXIT_SUCCESS;
 }
