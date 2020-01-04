@@ -43,7 +43,7 @@ double sumArray(size_t memoryStartPosition, size_t arrayLength) {
   return total;
 }
 
-EMSCRIPTEN_KEEPALIVE
+// EMSCRIPTEN_KEEPALIVE
 double *addTwoNonMutating(size_t memoryStartPosition, size_t arrayLength) {
   double *memory = (double *)memoryStartPosition;
   double *output = (double *)(memoryStartPosition + arrayLength * 8);
