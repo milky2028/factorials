@@ -2,5 +2,6 @@
   "C_Cpp.default.includePath": [
     "/local_home/tgross/Applications/emsdk/upstream/emscripten/system/**",
     "/Users/tgross/Documents/emsdk/upstream/emscripten/system/**"
-  ]
+  ],
+  "C_Cpp.clang_format_fallbackStyle": "Google"
 }
