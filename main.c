@@ -51,7 +51,7 @@ double* addTwoNonMutating(size_t memoryStartPosition, size_t arrayLength) {
   double* output = (double*)(memoryStartPosition + arrayLength * 8);
 
   for (size_t i = 0; i < arrayLength; ++i) {
-    output[i] += memory[i] + 2;
+    output[i] = memory[i] + 2;
   }
 
   return output;
