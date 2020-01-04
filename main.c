@@ -32,7 +32,7 @@ bool isPrime(size_t n) {
 
 EMSCRIPTEN_KEEPALIVE
 double sumArray(size_t memoryStartPosition, size_t arrayLength) {
-  double* memory = (double*)memoryStartPosition;
+  double *memory = (double *)memoryStartPosition;
 
   double total = 0;
   for (size_t i = 0; i < arrayLength; i++) {
@@ -43,9 +43,9 @@ double sumArray(size_t memoryStartPosition, size_t arrayLength) {
 }
 
 EMSCRIPTEN_KEEPALIVE
-double* addTwoNonMutating(size_t memoryStartPosition, size_t arrayLength) {
-  double* memory = (double*)memoryStartPosition;
-  double* output = (double*)(memoryStartPosition + arrayLength * 8);
+double *addTwoNonMutating(size_t memoryStartPosition, size_t arrayLength) {
+  double *memory = (double *)memoryStartPosition;
+  double *output = (double *)(memoryStartPosition + arrayLength * 8);
 
   for (size_t i = 0; i < arrayLength; i++) {
     output[i] += memory[i] + 2;
