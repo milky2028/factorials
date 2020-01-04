@@ -7,7 +7,9 @@
 #include <string.h>
 
 // EMSCRIPTEN_KEEPALIVE
-char const *const boolToString(bool b) { return b ? "true" : "false"; }
+char const* const boolToString(bool b) {
+  return b ? "true" : "false";
+}
 
 // EMSCRIPTEN_KEEPALIVE
 bool isPrime(size_t n) {
@@ -33,7 +35,7 @@ bool isPrime(size_t n) {
 
 // EMSCRIPTEN_KEEPALIVE
 double sumArray(size_t memoryStartPosition, size_t arrayLength) {
-  double *memory = (double *)memoryStartPosition;
+  double* memory = (double*)memoryStartPosition;
 
   double total = 0;
   for (size_t i = 0; i < arrayLength; ++i) {
@@ -44,9 +46,9 @@ double sumArray(size_t memoryStartPosition, size_t arrayLength) {
 }
 
 // EMSCRIPTEN_KEEPALIVE
-double *addTwoNonMutating(size_t memoryStartPosition, size_t arrayLength) {
-  double *memory = (double *)memoryStartPosition;
-  double *output = (double *)(memoryStartPosition + arrayLength * 8);
+double* addTwoNonMutating(size_t memoryStartPosition, size_t arrayLength) {
+  double* memory = (double*)memoryStartPosition;
+  double* output = (double*)(memoryStartPosition + arrayLength * 8);
 
   for (size_t i = 0; i < arrayLength; ++i) {
     output[i] += memory[i] + 2;
@@ -87,7 +89,7 @@ void findPrimes(size_t n, size_t primes[n]) {
 //   return EXIT_SUCCESS;
 // }
 
-int main(int argc, char *argv[argc + 1]) {
+int main(int argc, char* argv[argc + 1]) {
   if (argv[1] && !strcmp(argv[1], "test")) {
     assert(isPrime(1));
     assert(isPrime(5));
