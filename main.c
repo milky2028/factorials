@@ -7,6 +7,11 @@
 #include <string.h>
 
 EMSCRIPTEN_KEEPALIVE
+char const* const boolToString(bool b) {
+  return b ? "true" : "false";
+}
+
+EMSCRIPTEN_KEEPALIVE
 bool isPrime(size_t n) {
   for (size_t i = 2; i < n; ++i) {
     if (n % i == 0) {
@@ -14,7 +19,7 @@ bool isPrime(size_t n) {
     }
   }
 
-  return true;
+  return n != 1 && n != 0;
 }
 
 // typedef struct stringData {
