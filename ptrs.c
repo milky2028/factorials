@@ -19,19 +19,20 @@ typedef struct Primes {
   size_t len;
 } Primes;
 
-struct Primes findPrimes(uint32_t max) {
+struct Primes* findPrimes(uint32_t max) {
   uint32_t* primes = malloc(sizeof(uint32_t));
   size_t index = 0;
   for (size_t i = 2; i <= max; ++i) {
     if (isPrime(i)) {
       primes[index++] = i;
-      primes = realloc(primes, (sizeof(uint32_t) * index) + 1);
+      primes = realloc(primes, sizeof(uint32_t) * (index + 1));
     }
   }
 
-  struct Primes res = {.data = primes, .len = index};
-
-  return res;
+  struct Primes* ptr = malloc(sizeof(uint32_t) * (index + 1));
+  ptr->data = primes;
+  ptr->len = index;
+  return ptr;
 }
 
 int main(int argc, char* argv[argc + 1]) {
@@ -39,12 +40,12 @@ int main(int argc, char* argv[argc + 1]) {
   size_t max = strtoul(argv[1], ptr, 10);
   free(ptr);
 
-  struct Primes primes = findPrimes(max);
-  for (size_t i = 0; i < primes.len; ++i) {
-    printf("%d\n", primes.data[i]);
+  struct Primes* primes = findPrimes(max);
+  for (size_t i = 0; i < primes->len; ++i) {
+    printf("%d\n", primes->data[i]);
   }
 
-  free(primes.data);
+  free(primes);
 
   return EXIT_SUCCESS;
 }
