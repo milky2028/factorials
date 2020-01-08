@@ -36,6 +36,13 @@ struct Primes* findPrimes(uint32_t max) {
 }
 
 int main(int argc, char* argv[argc + 1]) {
+  if (argc < 2) {
+    printf("\n===============================================================\n");
+    printf("Error: no arguments specified. Please specify an upper bound.\n");
+    printf("===============================================================\n\n");
+    exit(EXIT_FAILURE);
+  };
+
   char** ptr = malloc(sizeof(char) * 16);
   size_t max = strtoul(argv[1], ptr, 10);
   free(ptr);
