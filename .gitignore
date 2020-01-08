@@ -61,3 +61,5 @@ dkms.conf
 
 /target
 **/*.rs.bk
+
+primes.js

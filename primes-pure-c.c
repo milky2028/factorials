@@ -2,12 +2,12 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 
-typedef struct Primes {
+typedef struct UInt32Array {
   uint32_t* data;
   size_t len;
-} Primes;
+  size_t unitSize;
+} UInt32Array;
 
 bool isPrime(size_t n) {
   for (size_t i = 2; i < n; ++i) {
@@ -19,7 +19,7 @@ bool isPrime(size_t n) {
   return n != 1 && n != 0;
 }
 
-struct Primes* findPrimes(uint32_t max) {
+struct UInt32Array* findPrimes(uint32_t max) {
   uint32_t* primes = malloc(sizeof(uint32_t));
   size_t index = 0;
   for (size_t i = 2; i <= max; ++i) {
@@ -29,18 +29,23 @@ struct Primes* findPrimes(uint32_t max) {
     }
   }
 
-  struct Primes* ptr = malloc(sizeof(uint32_t) * (index + 1));
+  struct UInt32Array* ptr = malloc(sizeof(uint32_t) * (index + 2));
   ptr->data = primes;
   ptr->len = index;
+  ptr->unitSize = sizeof(uint32_t);
   return ptr;
 }
 
-uint32_t* getData(struct Primes* primes) {
-  return primes->data;
+uint32_t* getData(struct UInt32Array* array) {
+  return array->data;
 }
 
-size_t getLen(struct Primes* primes) {
-  return primes->len;
+size_t getLen(struct UInt32Array* array) {
+  return array->len;
+}
+
+size_t getUnitSize(struct UInt32Array* array) {
+  return array->unitSize;
 }
 
 int main(int argc, char* argv[argc + 1]) {
@@ -55,7 +60,7 @@ int main(int argc, char* argv[argc + 1]) {
   size_t max = strtoul(argv[1], ptr, 10);
   free(ptr);
 
-  struct Primes* primes = findPrimes(max);
+  struct UInt32Array* primes = findPrimes(max);
   for (size_t i = 0; i < getLen(primes); ++i) {
     printf("%d\n", getData(primes)[i]);
   }
