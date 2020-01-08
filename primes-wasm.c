@@ -5,10 +5,11 @@
 #include <stdlib.h>
 #include <string.h>
 
-typedef struct Primes {
+typedef struct UInt32Array {
   uint32_t* data;
   size_t len;
-} Primes;
+  size_t unitSize;
+} UInt32Array;
 
 bool isPrime(size_t n) {
   for (size_t i = 2; i < n; ++i) {
@@ -21,7 +22,7 @@ bool isPrime(size_t n) {
 }
 
 EMSCRIPTEN_KEEPALIVE
-struct Primes* findPrimes(uint32_t max) {
+struct UInt32Array* findPrimes(uint32_t max) {
   uint32_t* primes = malloc(sizeof(uint32_t));
   size_t index = 0;
   for (size_t i = 2; i <= max; ++i) {
@@ -31,18 +32,24 @@ struct Primes* findPrimes(uint32_t max) {
     }
   }
 
-  struct Primes* ptr = malloc(sizeof(uint32_t) * (index + 1));
+  struct UInt32Array* ptr = malloc(sizeof(uint32_t) * (index + 2));
   ptr->data = primes;
   ptr->len = index;
+  ptr->unitSize = sizeof(uint32_t);
   return ptr;
 }
 
 EMSCRIPTEN_KEEPALIVE
-uint32_t* getData(struct Primes* primes) {
-  return primes->data;
+uint32_t* getData(struct UInt32Array* array) {
+  return array->data;
 }
 
 EMSCRIPTEN_KEEPALIVE
-size_t getLen(struct Primes* primes) {
-  return primes->len;
+size_t getLen(struct UInt32Array* array) {
+  return array->len;
+}
+
+EMSCRIPTEN_KEEPALIVE
+size_t getUnitSize(struct UInt32Array* array) {
+  return array->unitSize;
 }
