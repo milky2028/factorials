@@ -12,7 +12,7 @@ TODO: Use Cmake for this part
 **Commands For Compilation and Running**
 
 GCC/Clang  
-gcc primes-pure-c.c -o primes.o && ./primes.o MAX NUMBER TO COUNT PRIMES BELOW
+gcc primes-pure-c.c -o primes.o && ./primes.o MAX_NUMBER_TO_COUNT_PRIMES_BELOW
 
 Emscripten  
-emcc primes.wasm.c -s MODULARIZE=1 -O3 -o primes.js && node main-c.js
+emcc primes.wasm.c -s MODULARIZE=1 -O3 -o primes.js && node main-c.js MAX_NUMBER_TO_COUNT_PRIMES_BELOW
