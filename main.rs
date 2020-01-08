@@ -1,7 +1,11 @@
 use std::env::args;
 
 fn is_prime(number_to_test: u64) -> bool {
-  !(2..number_to_test).any(|i| number_to_test % i == 0)
+  if number_to_test == 1 || number_to_test == 0 {
+    false
+  } else {
+    !(2..number_to_test).any(|i| number_to_test % i == 0)
+  }
 }
 
 fn main() {
@@ -21,7 +25,8 @@ mod tests {
   #[test]
   fn test_is_prime() {
     use super::*;
-    assert!(is_prime(1));
+    assert!(!is_prime(0));
+    assert!(!is_prime(1));
     assert!(is_prime(7));
     assert!(!is_prime(10));
     assert!(is_prime(13));
