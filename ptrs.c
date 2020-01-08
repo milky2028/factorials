@@ -4,6 +4,11 @@
 #include <stdlib.h>
 #include <string.h>
 
+typedef struct Primes {
+  uint32_t* data;
+  size_t len;
+} Primes;
+
 bool isPrime(size_t n) {
   for (size_t i = 2; i < n; ++i) {
     if (n % i == 0) {
@@ -13,11 +18,6 @@ bool isPrime(size_t n) {
 
   return n != 1 && n != 0;
 }
-
-typedef struct Primes {
-  uint32_t* data;
-  size_t len;
-} Primes;
 
 struct Primes* findPrimes(uint32_t max) {
   uint32_t* primes = malloc(sizeof(uint32_t));
