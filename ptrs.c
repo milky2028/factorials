@@ -35,6 +35,14 @@ struct Primes* findPrimes(uint32_t max) {
   return ptr;
 }
 
+uint32_t* getData(struct Primes* primes) {
+  return primes->data;
+}
+
+size_t getLen(struct Primes* primes) {
+  return primes->len;
+}
+
 int main(int argc, char* argv[argc + 1]) {
   if (argc < 2) {
     printf("\n===============================================================\n");
@@ -48,8 +56,8 @@ int main(int argc, char* argv[argc + 1]) {
   free(ptr);
 
   struct Primes* primes = findPrimes(max);
-  for (size_t i = 0; i < primes->len; ++i) {
-    printf("%d\n", primes->data[i]);
+  for (size_t i = 0; i < getLen(primes); ++i) {
+    printf("%d\n", getData(primes)[i]);
   }
 
   free(primes);
