@@ -7,7 +7,7 @@ emcc [input filename] -O3 -o [output filename].wasm
 To find the location of emscripten.h, compile with emcc -v [input filename], then look for "#include <...> search starts here." "%some root%/system/\*\*" is the path for this header file.
 
 emcc main.c -s MODULARIZE=1 -s -o f.js && node main.js  
-Use modularize to assemble into a module that you can use as a promise
+Use modularize to assemble into a module that you can use as a promise. If you don't do this it's easier to run into errors when you're trying to call a WASM function, but the code isn't yet instantiated.
 
 TODO: Use Cmake for this part  
 **Commands For Compilation and Running**
