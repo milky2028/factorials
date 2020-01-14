@@ -2,6 +2,7 @@
 #include <stdbool.h>
 #include <stdint.h>
 #include <stdlib.h>
+#include <tgmath.h>
 
 typedef struct UInt32Array {
   uint32_t* data;
@@ -10,7 +11,7 @@ typedef struct UInt32Array {
 } UInt32Array;
 
 bool isPrime(size_t n) {
-  for (size_t i = 2; i < n; ++i) {
+  for (size_t i = 2; i < sqrt(n); ++i) {
     if (n % i == 0) {
       return false;
     }

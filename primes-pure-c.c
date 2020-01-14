@@ -2,6 +2,7 @@
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <tgmath.h>
 
 typedef struct UInt32Array {
   uint32_t* data;
@@ -10,7 +11,7 @@ typedef struct UInt32Array {
 } UInt32Array;
 
 bool isPrime(size_t n) {
-  for (size_t i = 2; i < n; ++i) {
+  for (size_t i = 2; i < sqrt(n); ++i) {
     if (n % i == 0) {
       return false;
     }
@@ -50,9 +51,11 @@ size_t getUnitSize(struct UInt32Array* array) {
 
 int main(int argc, char* argv[argc + 1]) {
   if (argc < 2) {
-    printf("\n===============================================================\n");
+    printf(
+        "\n===============================================================\n");
     printf("Error: no arguments specified. Please specify an upper bound.\n");
-    printf("===============================================================\n\n");
+    printf(
+        "===============================================================\n\n");
     exit(EXIT_FAILURE);
   };
 
