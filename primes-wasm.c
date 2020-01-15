@@ -22,7 +22,7 @@ bool isPrime(size_t n) {
 
 EMSCRIPTEN_KEEPALIVE
 struct UInt32Array* findPrimes(uint32_t max) {
-  uint32_t* primes = malloc(sizeof(uint32_t));
+  uint32_t* primes = calloc(1, sizeof(uint32_t));
   size_t index = 0;
   for (size_t i = 2; i <= max; ++i) {
     if (isPrime(i)) {
@@ -31,7 +31,7 @@ struct UInt32Array* findPrimes(uint32_t max) {
     }
   }
 
-  struct UInt32Array* ptr = malloc(sizeof(uint32_t) * (index + 2));
+  struct UInt32Array* ptr = calloc(index + 2, sizeof(uint32_t));
   ptr->data = primes;
   ptr->len = index;
   ptr->unitSize = sizeof(uint32_t);
@@ -40,15 +40,15 @@ struct UInt32Array* findPrimes(uint32_t max) {
 
 EMSCRIPTEN_KEEPALIVE
 uint32_t* getData(struct UInt32Array* array) {
-  return array->data;
+  return array ? array->data ? array->data : 0 : 0;
 }
 
 EMSCRIPTEN_KEEPALIVE
 size_t getLen(struct UInt32Array* array) {
-  return array->len;
+  return array ? array->len : 0;
 }
 
 EMSCRIPTEN_KEEPALIVE
 size_t getUnitSize(struct UInt32Array* array) {
-  return array->unitSize;
+  return array ? array->unitSize : 0;
 }
