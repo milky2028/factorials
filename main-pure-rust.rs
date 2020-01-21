@@ -13,21 +13,23 @@ fn find_primes(n: u32) -> impl Iterator<Item = u32> {
   (1..n).filter(|&i| is_prime(i))
 }
 
+fn print_bounded_error(msg: &str) {
+  eprintln!("\n==============================================================");
+  eprintln!("{}", msg);
+  eprintln!("==============================================================\n");
+}
+
 fn main() {
   let max = match args().nth(1) {
     Some(v) => match v.parse::<u32>() {
       Ok(v) => v,
       Err(_) => {
-        eprintln!("\n==============================================================");
-        eprintln!("Please enter a valid number");
-        eprintln!("==============================================================\n");
+        print_bounded_error("Please enter a valid number.");
         exit(1);
       }
     },
     None => {
-      eprintln!("\n==============================================================");
-      eprintln!("Error: no arguments specified. Please specify an upper bound.");
-      eprintln!("==============================================================\n");
+      print_bounded_error("Error: no arguments specified. Please specify an upper bound.");
       exit(1);
     }
   };
