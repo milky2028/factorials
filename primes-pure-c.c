@@ -69,6 +69,7 @@ int main(int argc, char* argv[argc + 1]) {
     printf("%d\n", getData(primes)[i]);
   }
 
+  free(primes->data);
   free(primes);
 
   return EXIT_SUCCESS;
