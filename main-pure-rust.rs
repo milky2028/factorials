@@ -24,7 +24,7 @@ fn main() {
     Some(v) => match v.parse::<u32>() {
       Ok(v) => v,
       Err(_) => {
-        print_bounded_error("Please enter a valid number.");
+        print_bounded_error("Please specify a valid number.");
         exit(1);
       }
     },
