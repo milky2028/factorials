@@ -30,7 +30,8 @@ struct UInt32Array* findPrimes(uint32_t max) {
     }
   }
 
-  struct UInt32Array* ptr = calloc(index + 2, sizeof(uint32_t));
+  struct UInt32Array* ptr =
+      malloc(index * sizeof(uint32_t) + sizeof(size_t) * 2);
   ptr->data = primes;
   ptr->len = index;
   ptr->unitSize = sizeof(uint32_t);
