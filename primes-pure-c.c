@@ -20,7 +20,7 @@ bool isPrime(size_t n) {
   return n != 1 && n != 0;
 }
 
-struct UInt32Array* findPrimes(uint32_t max) {
+UInt32Array* findPrimes(uint32_t max) {
   uint32_t* primes = calloc(1, sizeof(uint32_t));
   size_t index = 0;
   for (size_t i = 2; i <= max; ++i) {
@@ -30,23 +30,22 @@ struct UInt32Array* findPrimes(uint32_t max) {
     }
   }
 
-  struct UInt32Array* ptr =
-      malloc(index * sizeof(uint32_t) + sizeof(size_t) * 2);
+  UInt32Array* ptr = malloc(index * sizeof(uint32_t) + sizeof(size_t) * 2);
   ptr->data = primes;
   ptr->len = index;
   ptr->unitSize = sizeof(uint32_t);
   return ptr;
 }
 
-uint32_t* getData(struct UInt32Array* array) {
+uint32_t* getData(UInt32Array* restrict array) {
   return array ? array->data ? array->data : 0 : 0;
 }
 
-size_t getLen(struct UInt32Array* array) {
+size_t getLen(UInt32Array* restrict array) {
   return array ? array->len : 0;
 }
 
-size_t getUnitSize(struct UInt32Array* array) {
+size_t getUnitSize(UInt32Array* restrict array) {
   return array ? array->unitSize : 0;
 }
 
@@ -64,7 +63,7 @@ int main(int argc, char* argv[argc + 1]) {
   size_t max = strtoul(argv[1], ptr, 10);
   free(ptr);
 
-  struct UInt32Array* primes = findPrimes(max);
+  UInt32Array* primes = findPrimes(max);
   for (size_t i = 0; i < getLen(primes); ++i) {
     printf("%d\n", getData(primes)[i]);
   }
