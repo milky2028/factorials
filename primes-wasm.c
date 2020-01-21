@@ -53,3 +53,9 @@ EMSCRIPTEN_KEEPALIVE
 size_t getUnitSize(struct UInt32Array* array) {
   return array ? array->unitSize : 0;
 }
+
+EMSCRIPTEN_KEEPALIVE
+void cleanup(struct UInt32Array* array) {
+  free(array->data);
+  free(array);
+}
