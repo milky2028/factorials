@@ -37,18 +37,6 @@ UInt32Array* findPrimes(uint32_t max) {
   return ptr;
 }
 
-uint32_t* getData(UInt32Array* restrict array) {
-  return array ? array->data ? array->data : 0 : 0;
-}
-
-size_t getLen(UInt32Array* restrict array) {
-  return array ? array->len : 0;
-}
-
-size_t getUnitSize(UInt32Array* restrict array) {
-  return array ? array->unitSize : 0;
-}
-
 void printBoundedError(char const* const msg) {
   printf("\n===============================================================\n");
   printf("%s\n", msg);
@@ -71,8 +59,8 @@ int main(int argc, char* argv[argc + 1]) {
   free(ptr);
 
   UInt32Array* primes = findPrimes(max);
-  for (size_t i = 0; i < getLen(primes); ++i) {
-    printf("%d\n", getData(primes)[i]);
+  for (size_t i = 0; i < primes->len; ++i) {
+    printf("%d\n", primes->data[i]);
   }
 
   free(primes->data);
