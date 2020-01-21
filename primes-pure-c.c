@@ -49,18 +49,25 @@ size_t getUnitSize(UInt32Array* restrict array) {
   return array ? array->unitSize : 0;
 }
 
+void printBoundedError(char const* const msg) {
+  printf("\n===============================================================\n");
+  printf("%s\n", msg);
+  printf("===============================================================\n\n");
+}
+
 int main(int argc, char* argv[argc + 1]) {
   if (argc < 2) {
-    printf(
-        "\n===============================================================\n");
-    printf("Error: no arguments specified. Please specify an upper bound.\n");
-    printf(
-        "===============================================================\n\n");
+    printBoundedError(
+        "Error: no arguments specified. Please specify an upper bound.");
     exit(EXIT_FAILURE);
   };
 
   char** ptr = malloc(sizeof(char) * 16);
   size_t max = strtoul(argv[1], ptr, 10);
+  if (!max) {
+    printBoundedError("Please specify a valid number.");
+    exit(EXIT_FAILURE);
+  }
   free(ptr);
 
   UInt32Array* primes = findPrimes(max);
