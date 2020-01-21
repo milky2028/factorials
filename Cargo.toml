@@ -10,4 +10,4 @@ edition = "2018"
 
 [[bin]]
 name = "factorials"
-path = "main.rs"
+path = "main-pure-rust.rs"
