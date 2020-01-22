@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Primes</title>
+    <style>
+      body,
+      html {
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="canvas"></canvas>
+    <script type="module">
+      function setCanvasSize(c) {
+        c.width = window.innerWidth;
+        c.height = window.innerHeight;
+      }
+
+      const canvas = document.getElementById('canvas');
+      setCanvasSize(canvas);
+      const ctx = canvas.getContext('2d');
+
+      class Cell {
+        constructor(x, y, width, height) {
+          this.x = x;
+          this.y = y;
+          this.width = width;
+          this.height = height;
+        }
+      }
+
+      const totalCells = 100;
+      function draw() {
+        const w = canvas.width;
+        const h = canvas.height;
+        ctx.clearRect(0, 0, w, h);
+        ctx.moveTo(0, 0);
+        const pixels = w * h;
+        const cellWidth = w / Math.sqrt(totalCells);
+        const cellHeight = h / Math.sqrt(totalCells);
+
+        const cells = [];
+        let i = 0;
+        for (let x = 0; x < w; x = x + cellWidth) {
+          for (let y = 0; y < h; y = y + cellHeight) {
+            cells.push(new Cell(x, y, cellWidth, cellHeight));
+            ctx.strokeStyle = 'blue';
+            ctx.strokeRect(x, y, cellWidth, cellHeight);
+            if (i % 2 === 0) {
+              ctx.fillStyle = 'green';
+              ctx.fillRect(x, y, cellWidth, cellHeight);
+            }
+            ctx.fillStyle = 'black';
+            ctx.fillText(i, x + 2, y + 12);
+            i++;
+          }
+        }
+
+        console.log(cells);
+      }
+
+      window.addEventListener('resize', () => {
+        setCanvasSize(canvas);
+        draw();
+      });
+
+      draw();
+    </script>
+  </body>
+</html>
