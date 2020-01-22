@@ -20,7 +20,7 @@ bool isPrime(size_t n) {
   return n != 1 && n != 0;
 }
 
-UInt32Array* findPrimes(uint32_t max) {
+UInt32Array* findPrimes(size_t max) {
   uint32_t* primes = calloc(1, sizeof(uint32_t));
   size_t index = 0;
   for (size_t i = 2; i <= max; ++i) {
