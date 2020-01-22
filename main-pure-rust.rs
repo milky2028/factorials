@@ -1,5 +1,6 @@
 use std::env::args;
 use std::process::exit;
+const EXIT_FAILURE: i32 = 1;
 
 fn is_prime(n: u32) -> bool {
   if n == 0 || n == 1 {
@@ -25,12 +26,12 @@ fn main() {
       Ok(v) => v,
       Err(_) => {
         print_bounded_error("Please specify a valid number.");
-        exit(1);
+        exit(EXIT_FAILURE);
       }
     },
     None => {
       print_bounded_error("Error: no arguments specified. Please specify an upper bound.");
-      exit(1);
+      exit(EXIT_FAILURE);
     }
   };
   let prime_numbers = find_primes(max);
