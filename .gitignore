@@ -63,3 +63,5 @@ dkms.conf
 **/*.rs.bk
 
 primes.js
+node_modules
+main-x.js

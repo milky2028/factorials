@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "rimraf": "^3.0.1",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^5.2.0"
+  }
+}

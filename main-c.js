@@ -1,15 +1,22 @@
 const c = require('./primes.js');
-const max = process.argv[2];
+const max = Number(process.argv[2]);
+const iterations = Number(process.argv[3]);
 if (!max) {
-  throw new Error('Error: no arguments specified. Please specify an upper bound.');
+  throw 'Error: please specify an upper bound.';
 }
 
-process.setMaxListeners(Infinity);
+if (!iterations) {
+  throw 'Error: please specify a number of iterations';
+}
+
+function range(end) {
+  return [...Array(end + 1).keys()];
+}
 
 function findPrimesInC() {
-  const start = Date.now();
-  return new Promise((resolve) => {
-    c().then(({ _findPrimes, _getData, _getLen, _getUnitSize, HEAPU32 }) => {
+  c().then(({ _findPrimes, _getData, _getLen, _getUnitSize, HEAPU32 }) => {
+    const calculatePrimes = () => {
+      const start = Date.now();
       class Primes {
         constructor(ptr, memory) {
           this.memory = memory;
@@ -25,24 +32,38 @@ function findPrimesInC() {
       const ptr = _findPrimes(max);
       const primes = new Primes(ptr, HEAPU32);
       const primeNumbers = primes.data();
-      resolve(Date.now() - start);
-    });
+
+      return Date.now() - start;
+    };
+    console.log(
+      'C Primes:',
+      range(iterations)
+        .map(() => calculatePrimes())
+        .reduce((a, c) => a + c, 0) / iterations
+    );
   });
 }
 
-async function main() {
-  const iterations = [...Array(20).keys()];
-  const results = await Promise.all(iterations.map(async () => await findPrimesInC()));
-  const avg = results.reduce((a, c) => a + c, 0) / iterations.length;
-  return avg;
+function isPrime(n) {
+  for (let i = 2; i < Math.sqrt(n); i++) {
+    if (n % i === 0) {
+      return false;
+    }
+  }
+
+  return n !== 1 && n !== 0;
 }
 
-main()
-  .then((res) => {
-    console.log(res);
-    process.exit(0);
-  })
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  });
+function findPrimesInJS() {
+  const start = Date.now();
+  const primes = range(max).filter((n) => isPrime(n));
+  return Date.now() - start;
+}
+
+console.log(
+  'JS Primes:',
+  range(iterations)
+    .map(() => findPrimesInJS())
+    .reduce((a, c) => a + c, 0) / iterations
+);
+findPrimesInC();
