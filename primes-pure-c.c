@@ -21,7 +21,7 @@ bool isPrime(size_t n) {
 }
 
 UInt32Array* findPrimes(size_t max) {
-  uint32_t* primes = calloc(1, sizeof(uint32_t));
+  uint32_t register* primes = calloc(1, sizeof(uint32_t));
   size_t index = 0;
   for (size_t i = 2; i <= max; ++i) {
     if (isPrime(i)) {
@@ -37,7 +37,7 @@ UInt32Array* findPrimes(size_t max) {
   return ptr;
 }
 
-void printBoundedError(char const* const restrict msg) {
+void printBoundedError(char const* const msg) {
   printf("\n===============================================================\n");
   printf("%s\n", msg);
   printf("===============================================================\n\n");
@@ -47,14 +47,14 @@ int main(int argc, char* argv[argc + 1]) {
   if (argc < 2) {
     printBoundedError(
         "Error: no arguments specified. Please specify an upper bound.");
-    exit(EXIT_FAILURE);
+    return EXIT_FAILURE;
   };
 
   char** ptr = malloc(sizeof(char) * 16);
   size_t max = strtoul(argv[1], ptr, 10);
   if (!max) {
     printBoundedError("Please specify a valid number.");
-    exit(EXIT_FAILURE);
+    return EXIT_FAILURE;
   }
   free(ptr);
 

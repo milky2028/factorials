@@ -22,7 +22,7 @@ bool isPrime(size_t n) {
 
 EMSCRIPTEN_KEEPALIVE
 UInt32Array* findPrimes(uint32_t max) {
-  uint32_t* primes = calloc(1, sizeof(uint32_t));
+  uint32_t register* primes = calloc(1, sizeof(uint32_t));
   size_t index = 0;
   for (size_t i = 2; i <= max; ++i) {
     if (isPrime(i)) {
@@ -39,22 +39,22 @@ UInt32Array* findPrimes(uint32_t max) {
 }
 
 EMSCRIPTEN_KEEPALIVE
-uint32_t* getData(UInt32Array* restrict array) {
-  return array ? array->data ? array->data : 0 : 0;
+uint32_t* getData(UInt32Array array[static 1]) {
+  return array->data;
 }
 
 EMSCRIPTEN_KEEPALIVE
-size_t getLen(UInt32Array* restrict array) {
-  return array ? array->len : 0;
+size_t getLen(UInt32Array array[static 1]) {
+  return array->len;
 }
 
 EMSCRIPTEN_KEEPALIVE
-size_t getUnitSize(UInt32Array* restrict array) {
-  return array ? array->unitSize : 0;
+size_t getUnitSize(UInt32Array array[static 1]) {
+  return array->unitSize;
 }
 
 EMSCRIPTEN_KEEPALIVE
-void cleanup(UInt32Array* restrict array) {
+void cleanup(UInt32Array array[static 1]) {
   free(array->data);
   free(array);
 }
