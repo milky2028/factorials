@@ -37,7 +37,7 @@ UInt32Array* findPrimes(size_t max) {
   return ptr;
 }
 
-void printBoundedError(char const* const msg) {
+void printBoundedError(char const* const restrict msg) {
   printf("\n===============================================================\n");
   printf("%s\n", msg);
   printf("===============================================================\n\n");
