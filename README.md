@@ -17,3 +17,5 @@ gcc/clang primes-pure-c.c -o primes.o -lm -O3 && ./primes.o MAX_NUMBER_TO_COUNT_
 
 Emscripten  
 emcc primes-wasm.c -s MODULARIZE=1 -O3 -o primes.js && node main-c.js MAX_NUMBER_TO_COUNT_PRIMES_BELOW
+
+I ended up creating a build script for benchmarking tests that runs rollup and builds.
