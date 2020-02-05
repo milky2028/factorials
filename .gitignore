@@ -65,3 +65,4 @@ dkms.conf
 primes.js
 node_modules
 main-x.js
+rust/target

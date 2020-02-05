@@ -1,4 +1,4 @@
-const c = require('./primes.js');
+const c = require('./c/dist/primes');
 const max = Number(process.argv[2]);
 const iterations = Number(process.argv[3]);
 if (!max) {
