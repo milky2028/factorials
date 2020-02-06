@@ -8,5 +8,4 @@ add_executable(primes pure/main.c)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-add_link_options("LINKER: -z,defs")
 include(CPack)
