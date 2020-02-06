@@ -5,8 +5,9 @@ include(CTest)
 enable_testing()
 
 add_executable(primes pure/main.c)
+target_link_libraries(primes m)
+add_definitions(-O3)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
-target_link_libraries(primes m)
 include(CPack)
