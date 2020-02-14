@@ -66,4 +66,4 @@ primes.js
 node_modules
 main-x.js
 rust/target
-c/build
+**/build
