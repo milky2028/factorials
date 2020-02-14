@@ -16,7 +16,7 @@ bool isPrime(size_t n) {
     }
   }
 
-  return n != 1 && n != 0;
+  return n != 0 && n != 1;
 }
 
 UInt32Array* findPrimes(size_t max) {

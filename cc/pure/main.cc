@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+#include <cstdlib>
 #include "../primes.h"
 
 using namespace std;
@@ -28,7 +29,6 @@ int main(int argc, char* argv[]) {
     cout << primes->data[i] << endl;
   }
 
-  free(primes->data);
   free(primes);
 
   return EXIT_SUCCESS;
