@@ -2,7 +2,7 @@ fn is_prime(n: u32) -> bool {
   if n == 0 || n == 1 {
     false
   } else {
-    !(2..n).any(|i| n % i == 0)
+    !(2..((n as f64).sqrt() as u32)).any(|i| n % i == 0)
   }
 }
 
