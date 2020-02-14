@@ -8,7 +8,7 @@ typedef struct UInt32Array {
   size_t unitSize;
 } UInt32Array;
 
-bool isPrime(size_t n) {
+bool is_prime(size_t n) {
   for (size_t i = 2; i < sqrt(n); ++i) {
     if (n % i == 0) {
       return false;
@@ -18,11 +18,11 @@ bool isPrime(size_t n) {
   return n != 1 && n != 0;
 }
 
-UInt32Array* findPrimes(size_t max) {
+UInt32Array* find_primes(size_t max) {
   uint32_t* primes = (uint32_t*)calloc(1, sizeof(uint32_t));
   size_t index = 0;
   for (size_t i = 2; i <= max; ++i) {
-    if (isPrime(i)) {
+    if (is_prime(i)) {
       primes[index++] = i;
       primes = (uint32_t*)realloc(primes, sizeof(uint32_t) * (index + 1));
     }

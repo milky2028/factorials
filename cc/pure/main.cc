@@ -21,7 +21,7 @@ int main(int argc, char* argv[]) {
     std::exit(EXIT_FAILURE);
   }
 
-  UInt32Array* primes = findPrimes(max);
+  UInt32Array* primes = find_primes(max);
   for (size_t i = 0; i < primes->len; ++i) {
     std::cout << primes->data[i] << std::endl;
   }
