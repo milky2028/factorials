@@ -2,28 +2,30 @@
 #include <string>
 #include "../primes.h"
 
-void print_bounded_error(std::string msg) {
-  std::cout << "\n===============================================================\n";
-  std::cout << msg << std::endl;
-  std::cout << "===============================================================\n\n";
+using namespace std;
+
+void print_bounded_error(string msg) {
+  cout << "\n===============================================================\n";
+  cout << msg << endl;
+  cout << "===============================================================\n\n";
 }
 
 int main(int argc, char* argv[]) {
   if (argc == 1) {
     print_bounded_error(
       "Error: no arguments specified. Please specify an upper bound.");
-    std::exit(EXIT_FAILURE);
+    exit(EXIT_FAILURE);
   };
 
-  size_t max = std::stoul(argv[1]);
+  size_t max = stoul(argv[1]);
   if (!max) {
     print_bounded_error("Please specify a valid number.");
-    std::exit(EXIT_FAILURE);
+    exit(EXIT_FAILURE);
   }
 
   UInt32Array* primes = find_primes(max);
   for (size_t i = 0; i < primes->len; ++i) {
-    std::cout << primes->data[i] << std::endl;
+    cout << primes->data[i] << endl;
   }
 
   free(primes->data);
