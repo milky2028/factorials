@@ -1,31 +1,29 @@
-#include <cstdio>
-#include <cstdlib>
+#include <iostream>
+#include <string>
 #include "../primes.h"
 
-void printBoundedError(char const* const msg) {
-  printf("\n===============================================================\n");
-  printf("%s\n", msg);
-  printf("===============================================================\n\n");
+void print_bounded_error(std::string msg) {
+  std::cout << "\n===============================================================\n";
+  std::cout << msg << std::endl;
+  std::cout << "===============================================================\n\n";
 }
 
 int main(int argc, char* argv[]) {
-  if (argc < 2) {
-    printBoundedError(
-        "Error: no arguments specified. Please specify an upper bound.");
-    return EXIT_FAILURE;
+  if (argc == 1) {
+    print_bounded_error(
+      "Error: no arguments specified. Please specify an upper bound.");
+    std::exit(EXIT_FAILURE);
   };
 
-  char** ptr = (char**)malloc(sizeof(char) * 16);
-  size_t max = strtoul(argv[1], ptr, 10);
+  size_t max = std::stoul(argv[1]);
   if (!max) {
-    printBoundedError("Please specify a valid number.");
-    return EXIT_FAILURE;
+    print_bounded_error("Please specify a valid number.");
+    std::exit(EXIT_FAILURE);
   }
-  free(ptr);
 
   UInt32Array* primes = findPrimes(max);
   for (size_t i = 0; i < primes->len; ++i) {
-    printf("%d\n", primes->data[i]);
+    std::cout << primes->data[i] << std::endl;
   }
 
   free(primes->data);
