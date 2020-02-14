@@ -8,6 +8,5 @@
   "files.associations": {
     "tgmath.h": "c",
     "complex": "c"
-  },
-  "C_Cpp.default.configurationProvider": "vector-of-bool.cmake-tools",
+  }
 }

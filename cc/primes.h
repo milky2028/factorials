@@ -1,7 +1,6 @@
-#include <stdbool.h>
-#include <stdint.h>
-#include <stdlib.h>
-#include <tgmath.h>
+#include <cstdint>
+#include <cstdlib>
+#include <ctgmath>
 
 typedef struct UInt32Array {
   uint32_t* data;
