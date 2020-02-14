@@ -1,18 +1,8 @@
 use std::env::args;
 use std::process::exit;
+
+mod primes;
 const EXIT_FAILURE: i32 = 1;
-
-fn is_prime(n: u32) -> bool {
-  if n == 0 || n == 1 {
-    false
-  } else {
-    !(2..n).any(|i| n % i == 0)
-  }
-}
-
-fn find_primes(n: u32) -> impl Iterator<Item = u32> {
-  (1..n).filter(|&i| is_prime(i))
-}
 
 fn print_bounded_error(msg: &str) {
   eprintln!("\n==============================================================");
@@ -34,7 +24,8 @@ fn main() {
       exit(EXIT_FAILURE);
     }
   };
-  let prime_numbers = find_primes(max);
+
+  let prime_numbers = primes::find_primes(max);
   for i in prime_numbers {
     println!("{}", i);
   }
