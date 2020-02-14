@@ -8,14 +8,14 @@ void printBoundedError(char const* const msg) {
   printf("===============================================================\n\n");
 }
 
-int main(int argc, char* argv[argc + 1]) {
+int main(int argc, char* argv[]) {
   if (argc < 2) {
     printBoundedError(
         "Error: no arguments specified. Please specify an upper bound.");
     return EXIT_FAILURE;
   };
 
-  char** ptr = malloc(sizeof(char) * 16);
+  char** ptr = (char**)malloc(sizeof(char) * 16);
   size_t max = strtoul(argv[1], ptr, 10);
   if (!max) {
     printBoundedError("Please specify a valid number.");

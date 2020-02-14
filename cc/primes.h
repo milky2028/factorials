@@ -20,16 +20,17 @@ bool isPrime(size_t n) {
 }
 
 UInt32Array* findPrimes(size_t max) {
-  uint32_t* primes = calloc(1, sizeof(uint32_t));
+  uint32_t* primes = (uint32_t*)calloc(1, sizeof(uint32_t));
   size_t index = 0;
   for (size_t i = 2; i <= max; ++i) {
     if (isPrime(i)) {
       primes[index++] = i;
-      primes = realloc(primes, sizeof(uint32_t) * (index + 1));
+      primes = (uint32_t*)realloc(primes, sizeof(uint32_t) * (index + 1));
     }
   }
 
-  UInt32Array* ptr = malloc(index * sizeof(uint32_t) + sizeof(size_t) * 2);
+  UInt32Array* ptr =
+      (UInt32Array*)malloc(index * sizeof(uint32_t) + sizeof(size_t) * 2);
   ptr->data = primes;
   ptr->len = index;
   ptr->unitSize = sizeof(uint32_t);
