@@ -5,8 +5,9 @@
 
 using std::vector;
 
-bool is_prime(size_t n) {
-  for (size_t i = 2; i < sqrt(n); ++i) {
+template <typename T>
+bool is_prime(T n) {
+  for (T i = 2; i < sqrt(n); ++i) {
     if (n % i == 0) {
       return false;
     }
@@ -15,9 +16,10 @@ bool is_prime(size_t n) {
   return n != 0 && n != 1;
 }
 
-vector<uint32_t> find_primes(size_t max) {
-  vector<uint32_t> primes;
-  for (size_t i = 2; i <= max; ++i) {
+template <typename T>
+vector<T> find_primes(T max) {
+  vector<T> primes;
+  for (T i = 2; i <= max; ++i) {
     if (is_prime(i)) {
       primes.push_back(i);
     }
