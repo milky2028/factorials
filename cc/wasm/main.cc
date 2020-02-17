@@ -12,5 +12,5 @@ auto find_primes_cc(uint32_t max) {
 
 EMSCRIPTEN_BINDINGS(module) {
   function("findPrimes", &find_primes_cc);
-  register_vector<uint32_t>("vector<uint32_t>");
+  register_vector<uint32_t>("u32Vector");
 }
