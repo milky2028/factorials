@@ -5,7 +5,7 @@ include(CTest)
 enable_testing()
 
 add_executable(primes pure/main.cc)
-set_property(TARGET primes PROPERTY CXX_STANDARD 11)
+set_property(TARGET primes PROPERTY CXX_STANDARD 17)
 
 set(CPACK_PROJECT_NAME ${PROJECT_NAME})
 set(CPACK_PROJECT_VERSION ${PROJECT_VERSION})
