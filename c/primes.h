@@ -25,7 +25,7 @@ UInt32Array* findPrimes(size_t max) {
   for (size_t i = 2; i <= max; ++i) {
     if (isPrime(i)) {
       primes[index++] = i;
-      primes = realloc(primes, sizeof(uint32_t) * (index + 1));
+      primes = realloc(primes, sizeof(uint32_t) * index);
     }
   }
 
