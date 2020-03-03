@@ -15,19 +15,22 @@ TODO: Use Cmake/Emmake for this part below
 
 ## Commands For Compilation, Running, and Testing
 
-GCC/Clang for C
-gcc/clang pure/main.c -Wall std=c11 -o primes.o -lm -O3
+GCC/Clang for C w/Debugging
+clang pure/main.c -Wall -std=c11 -ggdb3 -o primes.o -lm
 
 Emscripten for C  
 emcc wasm/main.c -s MODULARIZE=1 -O3 -o primes.js
 
-Valgrind for C
+Valgrind for C or C++
 valgrind --leak-check=full \
          --show-leak-kinds=all \
          --track-origins=yes \
          --verbose \
          --log-file=valgrind-out.txt \
          ./executable commandLineArgs
+         
+GCC/Clang for C++ w/Debugging
+clang pure/main.cc -Wall -Wextra -Werror -std=c++17 -lstdc++ -ggdb3 -o primes.o -lm
 
 Emscripten for C++  
 emcc wasm/main.cc --bind -s MODULARIZE=1 -O3 -o primes.js -std=c++17
