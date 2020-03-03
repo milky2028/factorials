@@ -1,4 +1,4 @@
-fn is_prime(n: u32) -> bool {
+pub fn is_prime(n: u32) -> bool {
   if n == 0 || n == 1 {
     false
   } else {
