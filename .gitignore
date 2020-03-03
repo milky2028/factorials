@@ -66,5 +66,6 @@ primes.js
 node_modules
 main-x.js
 rust/target
+rust-wasm/target
 **/build
 **/.DS_Store
