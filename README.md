@@ -13,10 +13,21 @@ Use modularize to tell Emscripten compile code into a module that you can use as
 
 TODO: Use Cmake/Emmake for this part below
 
-## Commands For Compilation and Running
+## Commands For Compilation, Running, and Testing
+
+GCC/Clang for C
+gcc/clang pure/main.c -Wall std=c11 -o primes.o -lm -O3
 
 Emscripten for C  
 emcc wasm/main.c -s MODULARIZE=1 -O3 -o primes.js
+
+Valgrind for C
+valgrind --leak-check=full \
+         --show-leak-kinds=all \
+         --track-origins=yes \
+         --verbose \
+         --log-file=valgrind-out.txt \
+         ./executable commandLineArgs
 
 Emscripten for C++  
 emcc wasm/main.cc --bind -s MODULARIZE=1 -O3 -o primes.js -std=c++17
