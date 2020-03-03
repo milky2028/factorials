@@ -6,6 +6,6 @@ fn is_prime(n: u32) -> bool {
   }
 }
 
-pub fn find_primes(n: u32) -> impl Iterator<Item = u32> {
-  (1..n).filter(|&i| is_prime(i))
+pub fn find_primes(n: u32) -> Vec<u32> {
+  (1..n).filter(|&i| is_prime(i)).collect()
 }
