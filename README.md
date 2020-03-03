@@ -16,7 +16,7 @@ TODO: Use Cmake/Emmake for this part below
 ## Commands For Compilation and Running
 
 Emscripten for C  
-emcc primes-wasm.c -s MODULARIZE=1 -O3 -o primes.js
+emcc wasm/main.c -s MODULARIZE=1 -O3 -o primes.js
 
 Emscripten for C++  
 emcc wasm/main.cc --bind -s MODULARIZE=1 -O3 -o primes.js -std=c++17
