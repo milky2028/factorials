@@ -18,12 +18,16 @@ int main(int argc, string argv[argc + 1]) {
   string* ptr = malloc(sizeof(char) * 16);
   size_t max = strtoul(argv[1], ptr, 10);
 
-  if (!ptr || !max) {
+  if (!max) {
     print_bounded_error("Please specify a valid number.");
     exit(EXIT_FAILURE);
   }
 
-  free(ptr);
+  if (!ptr) {
+    allocation_error();
+  } else {
+    free(ptr);
+  }
 
   UInt32Array* primes = find_primes(max);
   for (size_t i = 0; i < primes->len; ++i) {

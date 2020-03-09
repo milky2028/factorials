@@ -3,8 +3,7 @@
 #include <stdlib.h>
 #include <tgmath.h>
 
-#define ALLOC_FAIL 0
-#define ALLOC_SUCCESS 1
+#define NULL_PTR 0
 
 typedef char* string;
 typedef struct _UInt32Array UInt32Array;
@@ -13,32 +12,35 @@ struct _UInt32Array {
   size_t len;
 };
 
+void allocation_error() {
+  printf("Allocation error");
+  exit(EXIT_FAILURE);
+}
+
 UInt32Array* new_uint32_array() {
   UInt32Array* def = malloc(sizeof(UInt32Array));
 
   if (!def) {
-    return ALLOC_FAIL;
+    allocation_error();
   }
 
-  def->data = malloc(sizeof(uint32_t));
-
-  if (!def->data) {
-    return ALLOC_FAIL;
-  }
-
+  def->data = NULL_PTR;
   def->len = 0;
 
   return def;
 }
 
-int push_to_uint32_array(UInt32Array* arr, uint32_t item) {
-  arr->data = realloc(arr->data, (arr->len * sizeof(uint32_t)));
-
-  if (!arr->data) {
-    return ALLOC_FAIL;
+void push_to_uint32_array(UInt32Array* arr, uint32_t item) {
+  if (arr->data) {
+    arr->data = realloc(arr->data, ((arr->len + 1) * sizeof(uint32_t)));
   } else {
+    arr->data = malloc(sizeof(uint32_t));
+  }
+
+  if (arr->data) {
     arr->data[arr->len++] = item;
-    return ALLOC_SUCCESS;
+  } else {
+    allocation_error();
   }
 }
 
@@ -64,9 +66,6 @@ bool is_prime(size_t n) {
 
 UInt32Array* find_primes(size_t max) {
   UInt32Array* primes = new_uint32_array();
-  if (!primes) {
-    return ALLOC_FAIL;
-  }
 
   for (uint32_t i = 2; i <= max; i++) {
     if (is_prime(i)) {
