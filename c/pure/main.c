@@ -2,34 +2,35 @@
 #include <stdlib.h>
 #include "../primes.h"
 
-void printBoundedError(char const* const msg) {
+void print_bounded_error(string msg) {
   printf("\n===============================================================\n");
   printf("%s\n", msg);
   printf("===============================================================\n\n");
 }
 
-int main(int argc, char* argv[argc + 1]) {
+int main(int argc, string argv[argc + 1]) {
   if (argc < 2) {
-    printBoundedError(
+    print_bounded_error(
         "Error: no arguments specified. Please specify an upper bound.");
-    return EXIT_FAILURE;
+    exit(EXIT_FAILURE);
   };
 
-  char** ptr = malloc(sizeof(char) * 16);
+  string* ptr = malloc(sizeof(char) * 16);
   size_t max = strtoul(argv[1], ptr, 10);
-  if (!max) {
-    printBoundedError("Please specify a valid number.");
-    return EXIT_FAILURE;
+
+  if (!ptr || !max) {
+    print_bounded_error("Please specify a valid number.");
+    exit(EXIT_FAILURE);
   }
+
   free(ptr);
 
-  UInt32Array* primes = findPrimes(max);
+  UInt32Array* primes = find_primes(max);
   for (size_t i = 0; i < primes->len; ++i) {
     printf("%d\n", primes->data[i]);
   }
 
-  free(primes->data);
-  free(primes);
+  free_uint32_array(primes);
 
-  return EXIT_SUCCESS;
+  exit(EXIT_SUCCESS);
 }
