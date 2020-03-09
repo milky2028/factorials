@@ -68,7 +68,7 @@ UInt32Array* find_primes(size_t max) {
     return ALLOC_FAIL;
   }
 
-  for (size_t i = 2; i <= max; i++) {
+  for (uint32_t i = 2; i <= max; i++) {
     if (is_prime(i)) {
       push_to_uint32_array(primes, i);
     }

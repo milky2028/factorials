@@ -9,9 +9,6 @@ void print_bounded_error(string msg) {
 }
 
 int main(int argc, string argv[argc + 1]) {
-  // printf("Size of uint32: %lu\n", sizeof(uint32_t));
-  // printf("Size of size_t: %lu\n", sizeof(size_t));
-
   if (argc < 2) {
     print_bounded_error(
         "Error: no arguments specified. Please specify an upper bound.");
