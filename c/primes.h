@@ -5,7 +5,6 @@
 
 #define NULL_PTR 0
 
-typedef char* string;
 typedef struct _UInt32Array UInt32Array;
 struct _UInt32Array {
   uint32_t* data;
