@@ -15,7 +15,7 @@ TODO: Use Cmake/Emmake for this part below
 
 ## Commands For Compilation, Running, and Testing
 
-GCC/Clang for C w/Debugging
+GCC/Clang for C w/Debugging  
 clang pure/main.c -Wall -std=c11 -ggdb3 -o primes.o -lm
 
 Emscripten for C  
