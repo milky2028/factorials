@@ -2,7 +2,7 @@ use std::env::args;
 use std::process::exit;
 
 mod primes;
-const EXIT_FAILURE: i32 = 1;
+const FAILURE: i32 = 1;
 
 fn print_bounded_error(msg: &str) {
   eprintln!("\n==============================================================");
@@ -16,12 +16,12 @@ fn main() {
       Ok(v) => v,
       Err(_) => {
         print_bounded_error("Please specify a valid number.");
-        exit(EXIT_FAILURE);
+        exit(FAILURE);
       }
     },
     None => {
       print_bounded_error("Error: no arguments specified. Please specify an upper bound.");
-      exit(EXIT_FAILURE);
+      exit(FAILURE);
     }
   };
 
